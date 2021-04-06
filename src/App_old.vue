@@ -1,6 +1,32 @@
 <template>
-  <router-view/>
+  <Header/>
+  <!-- <Home
+    app="STIM"
+  /> -->
+  <Login
+  />
+  <Footer 
+    author="Kevin Chafla Moran"
+    organization="INS Joaquim Mir"
+    license="GNU GPLv3"
+  />
 </template>
+
+<script>
+  import Header from "./components/common/Header.vue";
+  import Footer from "./components/common/Footer.vue";
+  import Home from './components/Home.vue'
+  import Login from "./components/user/Login.vue";
+  export default {
+    name: "STIM",
+    components: {
+      Header,
+      Home,
+      Login,
+      Footer,
+    },
+  };
+</script>
 
 <style>
 #app {

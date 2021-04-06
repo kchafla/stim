@@ -4,9 +4,9 @@
             <div class="row">
                 <!-- Logo -->
                 <h1 id="logo" class="col-2">
-                    <a href="#">
-                        <span class="cercle">🎮</span> STIM
-                    </a>
+                    <router-link to="/">
+                        <span class="cercle">🎮</span> Stim
+                    </router-link>
                 </h1>
                 <!-- Menu 1 -->
                 <div class="col-6">
@@ -22,11 +22,13 @@
                     <nav id="nav2" class="right">
                         <span id="logged" v-if="logged">
                             Welcome, <b>{{ nom }}</b>!
-                            <a id="logout" href="#">Logout</a>
+                            <a id="logout" @click="logout">Logout</a>
                         </span>
                         <span id="notLogged" v-else>
                             <a id="install" href="#" class="button">📁 Install Stim</a>
-                            <a id="login" href="#">Login</a>
+                            <router-link to="/login">
+                                Login
+                            </router-link>
                         </span>
                         <select v-model="idioma" id="language" name="language">
                             <option selected disabled>Language</option>
@@ -63,6 +65,12 @@
 
                 this.logged = true;
                 this.nom = sessio.username;
+            }
+        },
+        methods: {
+            logout: function() {
+                document.cookie = "";
+                this.logged = false;
             }
         }
     }

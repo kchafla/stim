@@ -29,13 +29,13 @@
             const response = await request.json();
 
             if (response["status"] == true) {
-                document.cookie = JSON.stringify(response["data"]);
-                alert("Has iniciado sesión correctamente!");
+                return response["data"]["username"];
             } else {
-                alert(response["data"]["message"]);
+                return "";
             }
         } catch (error) {
             console.log(error);
+            return "";
         }
     }
 
@@ -43,7 +43,8 @@
         data() {
             return {
                 username: "",
-                password: ""
+                password: "",
+                shared: this.$store.state
             }
         },
         methods: {
@@ -55,7 +56,15 @@
 
                 if (this.username != "" && regexUser.test(this.username)) {
                     if (this.password != "" /* && !this.password.includes(this.username) && regexPass.test(this.password) */) {
-                        login(this.username, this.password);
+                        let logged = login(this.username, this.password);
+                        logged.then((name) => {
+                            if (name != "") {
+                                this.$store.setUser(name);
+                                this.$router.push({path: "/"});
+                            } else {
+                                alert("Error de credencials!")
+                            }
+                        });
                     } else {
                         alert("Error en la contraseña!");
                     }

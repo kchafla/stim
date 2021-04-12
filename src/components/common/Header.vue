@@ -20,8 +20,8 @@
                 <!-- Menu 2 -->
                 <div class="col-4">
                     <nav id="nav2" class="right">
-                        <span id="logged" v-if="logged">
-                            Welcome, <b>{{ nom }}</b>!
+                        <span id="logged" v-if="shared.user">
+                            Welcome, <b>{{ shared.user }}</b>!
                             <a id="logout" @click="logout">Logout</a>
                         </span>
                         <span id="notLogged" v-else>
@@ -48,8 +48,7 @@
         data() {
             return {
                 idioma: localStorage.getItem("idioma"),
-                logged: false,
-                nom: ""
+                shared: this.$store.state
             }
         },
         watch: {
@@ -59,18 +58,9 @@
                 }
             }
         },
-        beforeMount: function() {
-            if (document.cookie != "") {
-                let sessio = JSON.parse(document.cookie);
-
-                this.logged = true;
-                this.nom = sessio.username;
-            }
-        },
         methods: {
             logout: function() {
-                document.cookie = "";
-                this.logged = false;
+                this.$store.removeUser();
             }
         }
     }

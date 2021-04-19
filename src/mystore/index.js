@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
  
-const store = {
+const mystore = {
    state: reactive({
        user: localStorage.getItem("logged-user") || ""
    }),
@@ -18,4 +18,4 @@ const store = {
    }
 };
  
-export default store
+export default mystore

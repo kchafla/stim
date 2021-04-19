@@ -11,7 +11,9 @@
                 <!-- Menu 1 -->
                 <div class="col-6">
                     <nav id="nav1">
-                        <a href="#">STORE</a>
+                        <router-link to="/search">
+                                STORE
+                        </router-link>
                         <a href="#">COMMUNITY</a>
                         <a href="#">ABOUT</a>
                         <a href="#">SUPPORT</a>
@@ -30,7 +32,7 @@
                                 Login
                             </router-link>
                         </span>
-                        <select v-model="idioma" id="language" name="language">
+                        <select v-model="shared.language" id="language" name="language">
                             <option selected disabled>Language</option>
                             <option value="en">🇬🇧 EN</option>
                             <option value="es">🇪🇸 ES</option>
@@ -47,20 +49,19 @@
     export default {
         data() {
             return {
-                idioma: localStorage.getItem("idioma"),
                 shared: this.$store.state
             }
         },
         watch: {
-            idioma(val, oldVal) {
+            "shared.language": function (val, oldVal) {
                 if (val != oldVal) {
-                    localStorage.setItem("idioma", val);
+                    this.$store.commit("changeLang", val);
                 }
             }
         },
         methods: {
             logout: function() {
-                this.$store.removeUser();
+                this.$store.commit("logOut");
             }
         }
     }

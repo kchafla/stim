@@ -43,8 +43,7 @@
         data() {
             return {
                 username: "",
-                password: "",
-                shared: this.$store.state
+                password: ""
             }
         },
         methods: {
@@ -59,7 +58,7 @@
                         let logged = login(this.username, this.password);
                         logged.then((name) => {
                             if (name != "") {
-                                this.$store.setUser(name);
+                                this.$store.commit("logIn", name);
                                 this.$router.push({path: "/"});
                             } else {
                                 alert("Error de credencials!")

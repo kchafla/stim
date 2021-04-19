@@ -16,9 +16,9 @@ const messages = {
     }
 }
 
-const lang = new VueI18n({
-    locale: 'ja', // set locale
+const language = new VueI18n({
+    locale: 'en', // set locale
     messages, // set locale messages
 })
 
-export default lang
+export default language

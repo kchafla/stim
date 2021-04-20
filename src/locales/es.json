@@ -1,0 +1,11 @@
+{
+  "store": "TIENDA",
+  "community": "COMUNIDAD",
+  "about": "SOBRE NOSOTROS",
+  "support": "SOPORTE",
+  "logout": "Salir",
+  "login": "Entrar",
+  "welcome": "Bienvenido",
+  "install": "Instalar Stim",
+  "language": "Idioma"
+}

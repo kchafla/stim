@@ -1,13 +1,17 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+
 /* import mystore from './mystore' */
 import store from './store'
-/* import language from './language' */
 
-createApp(App)
+import i18n from './i18n'
+
+const vm = createApp(App)
     .use(store)
+    .use(i18n)
 /*     .use(mystore) */
-/*     .use(language) */
     .use(router)
     .mount('#app')
+
+store.$app = vm;

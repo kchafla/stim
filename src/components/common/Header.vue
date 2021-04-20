@@ -12,28 +12,28 @@
                 <div class="col-6">
                     <nav id="nav1">
                         <router-link to="/search">
-                                STORE
+                                {{ t('store') }}
                         </router-link>
-                        <a href="#">COMMUNITY</a>
-                        <a href="#">ABOUT</a>
-                        <a href="#">SUPPORT</a>
+                        <a href="#">{{ t('community') }}</a>
+                        <a href="#">{{ t('about') }}</a>
+                        <a href="#">{{ t('support') }}</a>
                     </nav>
                 </div>
                 <!-- Menu 2 -->
                 <div class="col-4">
                     <nav id="nav2" class="right">
                         <span id="logged" v-if="shared.user">
-                            Welcome, <b>{{ shared.user }}</b>!
-                            <a id="logout" @click="logout">Logout</a>
+                            {{ t('welcome') }}, <b>{{ shared.user }}</b>!
+                            <a id="logout" @click="logout">{{ t('logout') }}</a>
                         </span>
                         <span id="notLogged" v-else>
-                            <a id="install" href="#" class="button">📁 Install Stim</a>
+                            <a id="install" href="#" class="button">📁 {{ t('install') }}</a>
                             <router-link to="/login">
-                                Login
+                                {{ t('login') }}
                             </router-link>
                         </span>
                         <select v-model="shared.language" id="language" name="language">
-                            <option selected disabled>Language</option>
+                            <option selected disabled>{{ t('language') }}</option>
                             <option value="en">🇬🇧 EN</option>
                             <option value="es">🇪🇸 ES</option>
                             <option value="ca">🇦🇩 CA</option>
@@ -46,25 +46,35 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                shared: this.$store.state
-            }
-        },
-        watch: {
-            "shared.language": function (val, oldVal) {
-                if (val != oldVal) {
-                    this.$store.commit("changeLang", val);
-                }
-            }
-        },
-        methods: {
-            logout: function() {
-                this.$store.commit("logOut");
+import { useI18n } from 'vue-i18n'
+
+export default {
+    setup() {
+        const { t } = useI18n({
+            inheritLocale: true,
+            useScope: 'global',
+        });
+
+        return { t }
+    },
+    data() {
+        return {
+            shared: this.$store.state
+        }
+    },
+    watch: {
+        "shared.language": function (val, oldVal) {
+            if (val != oldVal) {
+                this.$store.commit("changeLang", val);
             }
         }
+    },
+    methods: {
+        logout: function() {
+            this.$store.commit("logOut");
+        }
     }
+}
 </script>
 
 <style scoped>

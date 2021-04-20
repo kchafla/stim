@@ -1,0 +1,11 @@
+{
+  "store": "STORE",
+  "community": "COMMUNITY",
+  "about": "ABOUT",
+  "support": "SUPPORT",
+  "logout": "Logout",
+  "login": "Login",
+  "welcome": "Welcome",
+  "install": "Install Stim",
+  "language": "Language"
+}

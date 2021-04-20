@@ -12,6 +12,7 @@ export default createStore({
     changeLang(state, lang) {
       state.language = lang;
       localStorage.setItem("language", lang);
+      this.$app.$i18n.locale = lang
     },
     logIn(state, user) {
       state.user = user;

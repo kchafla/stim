@@ -2,6 +2,14 @@
   <router-view/>
 </template>
 
+<script>
+export default {
+  beforeCreate() {
+    this.$i18n.locale = this.$store.state.language
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
